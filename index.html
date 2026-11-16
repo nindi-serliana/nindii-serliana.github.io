@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nindi Serliana | Personal Website</title>
+<meta name="description" content="Website pribadi Nindi Serliana, mahasiswa Kewirausahaan UIN Mataram.">
+<meta name="theme-color" content="#02040a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- =====================================================================
+     PANDUAN CEPAT EDIT (baca dulu ya!)
+     ---------------------------------------------------------------------
+     1. Foto profil      -> cari  "PROFILE_PHOTO"  di bagian <script> paling bawah
+     2. Foto proyek      -> cari  "PROJECTS"       di bagian <script>
+     3. Sertifikat       -> cari  "CERTIFICATES"   di bagian <script>
+     4. Biodata/Kontak   -> cari  "PROFILE"        di bagian <script>
+     5. Level skill      -> cari  "SKILLS"         di bagian <script>
+     6. Warna tema       -> ubah variabel di :root pada bagian <style>
+     Taruh semua gambar di folder "images/" sejajar dengan file index.html.
+     ===================================================================== -->
+
+<style>
+/* ===================== TEMA WARNA (edit di sini) ===================== */
+:root{
+  --bg:#02040a;            /* hitam */
+  --bg-2:#050b1a;          /* biru sangat gelap */
+  --card:#07122b;          /* biru gelap kartu */
+  --card-2:#0a1a3d;
+  --neon:#00d9ff;          /* biru neon utama */
+  --neon-2:#2f6bff;        /* biru neon sekunder */
+  --text:#e6f1ff;
+  --muted:#8ea5c9;
+  --border:rgba(0,217,255,.22);
+  --glow:0 0 18px rgba(0,217,255,.45);
+  --radius:18px;
+}
+
+/* ===================== RESET & DASAR ===================== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 15% 10%,rgba(47,107,255,.18),transparent 40%),
+    radial-gradient(circle at 85% 40%,rgba(0,217,255,.10),transparent 40%),
+    linear-gradient(rgba(0,217,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,217,255,.04) 1px,transparent 1px);
+  background-size:auto,auto,48px 48px,48px 48px;
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section{padding:96px 0}
+.container{width:min(1120px,92%);margin:auto}
+
+.section-title{text-align:center;margin-bottom:56px}
+.section-title h2{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(1.6rem,4vw,2.3rem);
+  letter-spacing:1px;
+  background:linear-gradient(90deg,var(--neon),var(--neon-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.section-title p{color:var(--muted);margin-top:8px}
+.section-title .bar{width:72px;height:3px;margin:14px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--neon),var(--neon-2));box-shadow:var(--glow)}
+
+/* ===================== TOMBOL ===================== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:50px;font-weight:500;font-size:.95rem;
+  border:1px solid var(--neon);cursor:pointer;font-family:inherit;
+  transition:.3s;
+}
+.btn-primary{background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#021022;border-color:transparent;font-weight:600}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 26px rgba(0,217,255,.6)}
+.btn-outline{background:transparent;color:var(--neon)}
+.btn-outline:hover{background:rgba(0,217,255,.12);transform:translateY(-3px);box-shadow:var(--glow)}
+
+/* ===================== NAVBAR ===================== */
+header{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  background:rgba(2,4,10,.72);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav{display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.25rem;color:var(--neon);text-shadow:var(--glow)}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{
+  display:block;padding:8px 14px;border-radius:30px;font-size:.88rem;color:var(--muted);transition:.25s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--neon);background:rgba(0,217,255,.1);box-shadow:inset 0 0 0 1px var(--border)}
+.hamburger{display:none;background:none;border:1px solid var(--border);color:var(--neon);
+  width:44px;height:44px;border-radius:12px;font-size:1.3rem;cursor:pointer}
+
+/* ===================== HOME ===================== */
+#home{min-height:100vh;display:flex;align-items:center;padding-top:110px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero .tag{display:inline-block;padding:6px 16px;border:1px solid var(--border);border-radius:30px;
+  color:var(--neon);font-size:.85rem;background:rgba(0,217,255,.07);margin-bottom:16px}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,5.2vw,3.4rem);line-height:1.15;margin-bottom:10px}
+.hero h1 span{color:var(--neon);text-shadow:var(--glow)}
+.role{font-size:1.1rem;color:var(--muted);margin-bottom:20px;min-height:1.8em}
+.role b{color:var(--neon);font-weight:500}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--neon);margin-left:3px;vertical-align:middle;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.intro{color:#b9cae6;font-size:.97rem;margin-bottom:22px;text-align:justify}
+.greeting{
+  background:linear-gradient(135deg,rgba(47,107,255,.16),rgba(0,217,255,.06));
+  border:1px solid var(--border);border-left:4px solid var(--neon);
+  padding:18px 20px;border-radius:14px;margin-bottom:28px;font-size:.93rem;color:#d3e2fa;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.photo-wrap{position:relative;width:min(380px,80vw);aspect-ratio:1;margin:auto}
+.photo-wrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--neon),var(--neon-2),transparent,var(--neon));
+  filter:blur(2px);animation:spin 8s linear infinite;opacity:.85}
+.photo-wrap::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--bg)}
+.photo-wrap img{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 55%;
+  border:3px solid var(--card);transition:.4s}
+.photo-wrap:hover img{transform:scale(1.03)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===================== ABOUT ===================== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{
+  background:linear-gradient(160deg,var(--card),var(--bg-2));
+  border:1px solid var(--border);border-radius:var(--radius);padding:28px;
+  transition:.35s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--glow);border-color:var(--neon)}
+.card h3{font-size:1.1rem;color:var(--neon);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.card p{color:#b9cae6;font-size:.95rem}
+.bio-list{list-style:none}
+.bio-list li{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed rgba(0,217,255,.15);font-size:.92rem}
+.bio-list li:last-child{border:none}
+.bio-list b{min-width:120px;color:var(--muted);font-weight:500}
+.goal-list{list-style:none}
+.goal-list li{padding:6px 0 6px 26px;position:relative;font-size:.93rem;color:#b9cae6}
+.goal-list li::before{content:"▹";position:absolute;left:0;color:var(--neon)}
+.motto{
+  grid-column:1/-1;text-align:center;padding:30px;border-radius:var(--radius);
+  background:linear-gradient(90deg,rgba(0,217,255,.12),rgba(47,107,255,.12));
+  border:1px solid var(--neon);box-shadow:var(--glow);
+}
+.motto small{color:var(--neon);letter-spacing:3px;text-transform:uppercase;font-size:.75rem}
+.motto p{font-size:clamp(1.05rem,2.6vw,1.4rem);font-style:italic;margin-top:8px}
+.dream{grid-column:1/-1;text-align:center}
+.dream strong{color:var(--neon);text-shadow:var(--glow)}
+
+/* ===================== TIMELINE (Education & Experience) ===================== */
+.timeline{position:relative;max-width:820px;margin:auto;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;
+  background:linear-gradient(var(--neon),var(--neon-2),transparent)}
+.t-item{position:relative;margin-bottom:26px}
+.t-item::before{content:"";position:absolute;left:-34px;top:26px;width:18px;height:18px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--neon);box-shadow:var(--glow)}
+.t-item .date{color:var(--neon);font-size:.82rem;letter-spacing:1px;margin-bottom:4px}
+.t-item h3{font-size:1.1rem;margin-bottom:4px;color:var(--text)}
+.t-item .sub{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+.t-item p{color:#b9cae6;font-size:.93rem}
+.badge{display:inline-block;margin-top:10px;padding:3px 12px;border-radius:20px;font-size:.78rem;
+  border:1px solid var(--border);color:var(--neon);background:rgba(0,217,255,.07)}
+
+/* ===================== SKILLS ===================== */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.skill{text-align:center}
+.skill .icon{font-size:2.3rem;margin-bottom:8px;filter:drop-shadow(0 0 8px rgba(0,217,255,.6))}
+.skill h3{font-size:1rem;margin-bottom:14px}
+.meter{height:8px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:10px;
+  background:linear-gradient(90deg,var(--neon-2),var(--neon));box-shadow:var(--glow);
+  transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.skill .pct{margin-top:8px;font-size:.82rem;color:var(--muted)}
+
+/* ===================== PROJECTS ===================== */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px}
+.project{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.project .thumb{position:relative;aspect-ratio:16/10;overflow:hidden}
+.project .thumb img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.project:hover .thumb img{transform:scale(1.08)}
+.project .thumb .ribbon{position:absolute;top:12px;left:12px;padding:4px 14px;border-radius:20px;
+  background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#021022;font-size:.75rem;font-weight:600}
+.project .body{padding:22px;display:flex;flex-direction:column;flex:1}
+.project .cat{color:var(--neon);font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+.project h3{margin:4px 0 8px;font-size:1.15rem;color:var(--text)}
+.project p{color:#b9cae6;font-size:.9rem;flex:1;margin-bottom:18px}
+.project.featured{grid-column:1/-1;flex-direction:row}
+.project.featured .thumb{flex:1.1;aspect-ratio:auto;min-height:280px}
+.project.featured .body{flex:1;justify-content:center;padding:34px}
+
+/* ===================== CERTIFICATES ===================== */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.cert{padding:0;overflow:hidden;cursor:pointer}
+.cert .img{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--bg-2)}
+.cert .img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.cert:hover .img img{transform:scale(1.1)}
+.cert .img::after{content:"🔍 Perbesar";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(2,4,10,.65);color:var(--neon);opacity:0;transition:.3s;font-size:.95rem}
+.cert:hover .img::after{opacity:1}
+.cert .info{padding:16px 18px}
+.cert .info h4{font-size:.98rem;margin-bottom:2px}
+.cert .info span{font-size:.82rem;color:var(--muted)}
+
+/* ===================== CONTACT ===================== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.contact-item{display:flex;align-items:center;gap:16px;padding:18px;margin-bottom:16px;
+  border:1px solid var(--border);border-radius:14px;background:var(--card);transition:.3s}
+.contact-item:hover{border-color:var(--neon);box-shadow:var(--glow);transform:translateX(6px)}
+.contact-item .ci{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;
+  background:linear-gradient(135deg,var(--neon-2),var(--neon));color:#021022;flex-shrink:0}
+.contact-item small{color:var(--muted);display:block;font-size:.78rem}
+.contact-item span{word-break:break-all;font-size:.93rem}
+form label{display:block;font-size:.85rem;color:var(--muted);margin:0 0 6px}
+form input,form textarea{
+  width:100%;padding:13px 16px;margin-bottom:16px;border-radius:12px;
+  background:var(--bg-2);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:.93rem;transition:.25s}
+form input:focus,form textarea:focus{outline:none;border-color:var(--neon);box-shadow:var(--glow)}
+form textarea{min-height:130px;resize:vertical}
+.socials{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+.socials a{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--neon);color:var(--neon);font-size:1.25rem;transition:.3s}
+.socials a:hover{background:var(--neon);color:#021022;box-shadow:0 0 24px rgba(0,217,255,.7);transform:translateY(-5px)}
+.socials svg{width:22px;height:22px;fill:currentColor}
+
+/* ===================== FOOTER, BACK TO TOP ===================== */
+footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+footer b{color:var(--neon)}
+#toTop{position:fixed;right:22px;bottom:24px;width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg,var(--neon-2),var(--neon));color:#021022;border:none;font-size:1.3rem;font-weight:700;
+  cursor:pointer;box-shadow:var(--glow);opacity:0;visibility:hidden;transform:translateY(20px);transition:.35s;z-index:90}
+#toTop.show{opacity:1;visibility:visible;transform:none}
+#toTop:hover{transform:translateY(-5px);box-shadow:0 0 28px rgba(0,217,255,.8)}
+
+/* ===================== LIGHTBOX / MODAL ===================== */
+.modal{position:fixed;inset:0;background:rgba(1,3,8,.92);backdrop-filter:blur(6px);z-index:200;
+  display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal-box{max-width:min(900px,100%);max-height:92vh;overflow:auto;background:var(--card);
+  border:1px solid var(--neon);border-radius:var(--radius);box-shadow:var(--glow);position:relative}
+.modal-box img{width:100%;max-height:68vh;object-fit:contain;background:#000}
+.modal-box .cap{padding:18px 24px}
+.modal-box .cap h3{color:var(--neon)}
+.modal-box .cap p{color:#b9cae6;font-size:.93rem;margin:6px 0 14px}
+.modal-close{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--neon);background:rgba(2,4,10,.85);color:var(--neon);font-size:1.2rem;cursor:pointer;z-index:3}
+.modal-close:hover{background:var(--neon);color:#021022}
+
+/* ===================== ANIMASI MUNCUL ===================== */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s}
+.reveal.show{opacity:1;transform:none}
+
+/* ===================== RESPONSIF ===================== */
+@media(max-width:960px){
+  .hamburger{display:block}
+  .nav-links{
+    position:absolute;top:70px;left:0;width:100%;flex-direction:column;gap:0;
+    background:rgba(2,4,10,.97);border-bottom:1px solid var(--border);
+    max-height:0;overflow:hidden;transition:max-height .4s;
+  }
+  .nav-links.open{max-height:520px}
+  .nav-links a{border-radius:0;padding:14px 6%;border-top:1px solid rgba(0,217,255,.08)}
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero-photo{order:-1}
+  .hero-btns{justify-content:center}
+  .intro{text-align:left}
+  .greeting{text-align:left}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .project.featured{flex-direction:column}
+  .project.featured .thumb{min-height:0;aspect-ratio:16/10}
+  .project.featured .body{padding:22px}
+  section{padding:72px 0}
+}
+@media(max-width:480px){
+  .bio-list li{flex-direction:column;gap:0}
+  .bio-list b{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================ NAVBAR ============================ -->
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">NINDI<span>.S</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ HOME ============================ -->
+<section id="home">
+  <div class="container hero">
+    <div class="hero-text reveal">
+      <span class="tag">● Mahasiswa</span>
+      <h1>Hi, saya <span>Nindi Serliana</span></h1>
+      <div class="role">Saya seorang <b id="typed"></b><span class="cursor"></span></div>
+
+      <!-- Perkenalan singkat -->
+      <p class="intro">Perkenalkan, nama saya Nindi Serliana, mahasiswa Program Studi Kewirausahaan, Fakultas Ekonomi dan Bisnis Islam, UIN Mataram. Saya memiliki ketertarikan pada dunia bisnis, kewirausahaan, dan perkembangan teknologi digital. Saya juga mulai mengembangkan keterampilan di bidang digital, khususnya dalam pembuatan website dan toko online sederhana. Bagi saya, kemampuan bukan hanya tentang apa yang sudah kita kuasai, tetapi juga tentang kemauan untuk terus belajar, mencoba hal baru, dan menciptakan sesuatu yang bernilai. Harapan saya, melalui proses belajar ini, saya dapat mengembangkan potensi diri, memperluas wawasan, serta menciptakan peluang dan inovasi di masa depan.</p>
+
+      <!-- Kalimat sambutan -->
+      <div class="greeting">Halo guys! 👋 Kenalin, aku Nindi Serliana, mahasiswa Kewirausahaan dari UIN Mataram. Aku tertarik sama dunia bisnis, kreativitas, dan teknologi digital. Sedikit-sedikit aku juga punya skill bikin website dan toko online. Aku orangnya masih suka belajar hal baru, mencoba sesuatu yang berbeda, dan pastinya pengen terus upgrade diri. Buat aku, hidup itu tentang mencoba, berkembang, dan menciptakan peluang. Karena siapa tahu, hal kecil yang kita mulai hari ini bisa jadi sesuatu yang besar di masa depan. Nice to meet you all! Let's grow and make something great! 🚀</div>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">Lihat Projects →</a>
+        <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+      </div>
+    </div>
+
+    <div class="hero-photo reveal">
+      <div class="photo-wrap">
+        <!-- FOTO PROFIL: diatur lewat PROFILE_PHOTO di bagian <script> -->
+        <img id="profilePhoto" alt="Foto profil Nindi Serliana">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ME ============================ -->
+<section id="about">
+  <div class="container">
+    <div class="section-title reveal"><h2>About Me</h2><div class="bar"></div><p>Sedikit tentang saya</p></div>
+
+    <div class="about-grid">
+      <!-- BIODATA (edit di sini bila ada perubahan) -->
+      <div class="card reveal">
+        <h3>👤 Biodata</h3>
+        <ul class="bio-list">
+          <li><b>Nama</b><span>Nindi Serliana</span></li>
+          <li><b>Status</b><span>Mahasiswa</span></li>
+          <li><b>Program Studi</b><span>Kewirausahaan</span></li>
+          <li><b>Kampus</b><span>UIN Mataram</span></li>
+          <li><b>Minat</b><span>Bisnis, teknologi digital, dan kreativitas</span></li>
+          <li><b>Keahlian</b><span>Membuat website dan toko online sederhana</span></li>
+          <li><b>Hobi</b><span>Belajar hal baru dan mencoba hal-hal kreatif</span></li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <h3>📖 Latar Belakang</h3>
+        <p>Saya adalah mahasiswa Kewirausahaan yang tertarik dengan dunia bisnis dan teknologi. Saya suka mencoba hal-hal baru, terutama yang berkaitan dengan kreativitas digital seperti membuat website dan toko online. Saya ingin terus belajar, mengembangkan kemampuan, dan mencari pengalaman baru untuk membangun masa depan yang lebih baik.</p>
+      </div>
+
+      <div class="card reveal" style="grid-column:1/-1">
+        <h3>🎯 Tujuan &amp; Cita-cita</h3>
+        <ul class="goal-list">
+          <li>Mengembangkan potensi diri</li>
+          <li>Memperluas wawasan</li>
+          <li>Meningkatkan kemampuan di bidang kewirausahaan dan teknologi digital</li>
+          <li>Membangun kreativitas</li>
+          <li>Mampu menciptakan peluang usaha yang inovatif dan bermanfaat bagi orang lain</li>
+        </ul>
+      </div>
+
+      <div class="card dream reveal">
+        <h3 style="justify-content:center">🚀 Mimpi Terbesar</h3>
+        <p>Mimpi terbesar saya adalah menjadi <strong>CEO muda</strong>.</p>
+      </div>
+
+      <div class="motto reveal">
+        <small>Motto Hidup</small>
+        <p>“Bermimpilah besar, mulailah dari hal kecil, dan buktikan melalui tindakan nyata.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EDUCATION ============================ -->
+<section id="education">
+  <div class="container">
+    <div class="section-title reveal"><h2>Education</h2><div class="bar"></div><p>Riwayat pendidikan</p></div>
+    <div class="timeline">
+      <!-- Tambah pendidikan baru: salin satu blok .t-item di bawah -->
+      <div class="t-item reveal">
+        <div class="card">
+          <div class="date">2024 — Sekarang</div>
+          <h3>Universitas Islam Negeri Mataram</h3>
+          <div class="sub">Program Studi Kewirausahaan · Fakultas Ekonomi dan Bisnis Islam</div>
+          <p>Menempuh pendidikan S1 dengan fokus pada kewirausahaan, bisnis, dan pengembangan keterampilan digital.</p>
+          <span class="badge">Tahun masuk: 2024</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SKILLS ============================ -->
+<section id="skills">
+  <div class="container">
+    <div class="section-title reveal"><h2>Skills</h2><div class="bar"></div><p>Kemampuan yang sedang saya kembangkan</p></div>
+    <!-- Kartu skill dibuat otomatis dari daftar SKILLS di <script> -->
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
+
+<!-- ============================ PROJECTS ============================ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-title reveal"><h2>Projects</h2><div class="bar"></div><p>Karya dan proyek yang pernah saya buat</p></div>
+    <!-- Kartu proyek dibuat otomatis dari daftar PROJECTS di <script> -->
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- ============================ EXPERIENCE ============================ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-title reveal"><h2>Experience</h2><div class="bar"></div><p>Pengalaman kegiatan perkuliahan</p></div>
+    <div class="timeline">
+      <!-- Tambah pengalaman baru: salin satu blok .t-item -->
+      <div class="t-item reveal">
+        <div class="card">
+          <div class="date">PELATIHAN</div>
+          <h3>Pelatihan Percetakan / Sablon Baju</h3>
+          <div class="sub">Kegiatan perkuliahan</div>
+          <p>Mengikuti pelatihan percetakan atau sablon baju untuk mempelajari proses produksi dan peluang usaha di bidang kreatif.</p>
+          <span class="badge">Pelatihan</span>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="card">
+          <div class="date">KEPANITIAAN</div>
+          <h3>Panitia Konsumsi — HMI</h3>
+          <div class="sub">Organisasi HMI</div>
+          <p>Berpengalaman sebagai panitia seksi konsumsi dalam kegiatan organisasi HMI, melatih kerja sama tim, tanggung jawab, dan manajemen kebutuhan acara.</p>
+          <span class="badge">Organisasi</span>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="card">
+          <div class="date">BAZAR</div>
+          <h3>Peserta Bazar Kampus</h3>
+          <div class="sub">Kegiatan kampus</div>
+          <p>Mengikuti bazar kampus sebagai praktik langsung berjualan, berinteraksi dengan pembeli, dan melatih jiwa kewirausahaan.</p>
+          <span class="badge">Kewirausahaan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CERTIFICATES ============================ -->
+<section id="certificates">
+  <div class="container">
+    <div class="section-title reveal"><h2>Certificates</h2><div class="bar"></div><p>Sertifikat, dokumentasi pelatihan, dan pencapaian</p></div>
+    <!-- Galeri dibuat otomatis dari daftar CERTIFICATES di <script>. Klik gambar untuk memperbesar -->
+    <div class="cert-grid" id="certGrid"></div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-title reveal"><h2>Contact</h2><div class="bar"></div><p>Mari terhubung dan berkolaborasi</p></div>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <a class="contact-item" id="cEmail" href="#"><div class="ci">✉</div><div><small>Email</small><span id="cEmailText"></span></div></a>
+        <a class="contact-item" id="cIg" href="#" target="_blank" rel="noopener"><div class="ci">📷</div><div><small>Instagram</small><span id="cIgText"></span></div></a>
+        <a class="contact-item" id="cWa" href="#" target="_blank" rel="noopener"><div class="ci">💬</div><div><small>WhatsApp</small><span id="cWaText"></span></div></a>
+
+        <div class="socials">
+          <a id="sEmail" href="#" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+          </a>
+          <a id="sIg" href="#" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.3 6a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 17.3 6z"/></svg>
+          </a>
+          <a id="sWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM8 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Formulir: pesan akan dikirim langsung ke WhatsApp Nindi -->
+      <form class="card reveal" id="contactForm">
+        <h3>📨 Kirim Pesan via WhatsApp</h3>
+        <label for="fName">Nama</label>
+        <input id="fName" type="text" placeholder="Nama kamu" required>
+        <label for="fMsg">Pesan</label>
+        <textarea id="fMsg" placeholder="Tulis pesan kamu di sini..." required></textarea>
+        <button type="submit" class="btn btn-primary">Kirim Pesan 🚀</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> <b>Nindi Serliana</b> · Mahasiswa Kewirausahaan UIN Mataram</p>
+  </div>
+</footer>
+
+<!-- Tombol kembali ke atas -->
+<button id="toTop" aria-label="Kembali ke atas">↑</button>
+
+<!-- Lightbox / modal dipakai untuk sertifikat dan detail proyek -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">✕</button>
+    <img id="modalImg" alt="">
+    <div class="cap">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <a id="modalLink" class="btn btn-primary" href="#" target="_blank" rel="noopener" style="display:none">Buka Proyek ↗</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ★ GAMBAR SERTIFIKAT: path file di folder images/ (ganti bila nama file berbeda) -->
+<script>window.CERT_IMAGES = {
+  dcct: "images/sertifikat-dcct.jpg",
+  wrbm: "images/sertifikat-wrbm.jpg"
+};</script>
+
+<script>
+/* =====================================================================
+   ★★★ BAGIAN YANG MUDAH DIEDIT ★★★
+   Edit data di bawah ini, tidak perlu menyentuh kode lain.
+   ===================================================================== */
+
+/* ---------- PROFILE: data pribadi & kontak ---------- */
+const PROFILE = {
+  name: "Nindi Serliana",
+  email: "240504015.mhs@uinmataram.ac.id",
+  instagram: "nindia6255",
+  whatsapp: "6285945599813",        // format internasional tanpa + dan 0 depan (085945599813 -> 6285945599813)
+  whatsappDisplay: "085945599813"
+};
+
+/* ---------- PROFILE_PHOTO: foto profil ----------
+   Simpan foto di folder images/ dengan nama profil.jpg
+   (atau ubah path di bawah). Jika file belum ada, tampil inisial "NS". */
+const PROFILE_PHOTO = "images/profil.jpg";
+
+/* ---------- SKILLS: nama, ikon, dan level (0-100) ----------
+   Level adalah perkiraan awal, silakan sesuaikan dengan kemampuanmu. */
+const SKILLS = [
+  { name: "Microsoft Excel",   icon: "📊", level: 75 },
+  { name: "PowerPoint",        icon: "📽️", level: 80 },
+  { name: "HTML & CSS",        icon: "💻", level: 65 },
+  { name: "Digital Marketing", icon: "📣", level: 70 },
+  { name: "Kreativitas",       icon: "🎨", level: 85 }
+];
+
+/* ---------- PROJECTS: daftar proyek ----------
+   image : path foto proyek (taruh di images/)
+   link  : URL proyek. Jika dikosongkan (""), tombol akan membuka jendela detail.
+   featured: true = tampil besar (proyek utama) */
+const PROJECTS = [
+  {
+    title: "Serli Store",
+    category: "Proyek Utama · Toko Online",
+    desc: "Website toko online buatan saya dengan katalog produk, filter dan pencarian, keranjang belanja, serta pemesanan langsung lewat WhatsApp. Wujud penerapan ilmu kewirausahaan dan keterampilan digital.",
+    image: "images/proyek-serli-store.jpg",
+    link: "https://nindi-serliana.github.io/toko-serli/",
+    featured: true
+  },
+  {
+    title: "Proyek Tugas Kuliah",
+    category: "Tugas Kuliah",
+    desc: "Kumpulan tugas perkuliahan yang saya kerjakan, seperti presentasi, analisis sederhana, dan laporan bisnis.",
+    image: "images/proyek-tugas-kuliah.jpg",
+    link: ""
+  },
+  {
+    title: "Proyek Kewirausahaan",
+    category: "Kewirausahaan",
+    desc: "Proyek usaha yang saya jalankan sebagai latihan merencanakan, memproduksi, dan memasarkan produk.",
+    image: "images/proyek-kewirausahaan.jpg",
+    link: ""
+  }
+];
+
+/* ---------- CERTIFICATES: galeri sertifikat & dokumentasi ----------
+   Cara menambah: tambahkan satu blok { title, desc, image } baru di bawah.
+   Taruh gambar di folder images/ lalu tulis path-nya, contoh: image: "images/sertifikat-3.jpg" */
+const CERTIFICATES = [
+  {
+    title: "Digital Content Creation Training",
+    desc: "Peserta pelatihan, diselenggarakan oleh Unit Pengembangan Kewirausahaan dan Karir UIN Mataram · 9 Oktober 2024",
+    image: window.CERT_IMAGES.dcct
+  },
+  {
+    title: "Workshop Rintisan Bisnis Mahasiswa",
+    desc: "Peserta workshop, diselenggarakan oleh Unit Pengembangan Kewirausahaan dan Karir UIN Mataram · 4–5 September 2024",
+    image: window.CERT_IMAGES.wrbm
+  }
+];
+
+/* Teks yang diketik otomatis di bagian Home */
+const TYPED_TEXTS = ["Mahasiswa Kewirausahaan", "Penggiat Bisnis & Kreativitas", "Pemula Web Developer", "Calon CEO Muda"];
+
+
+/* =====================================================================
+   KODE FUNGSIONAL (tidak perlu diedit)
+   ===================================================================== */
+
+/* Gambar pengganti otomatis bila file gambar belum tersedia */
+function placeholder(label){
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1a3d"/><stop offset="1" stop-color="#02040a"/></linearGradient></defs>
+    <rect width="800" height="560" fill="url(#g)"/>
+    <rect x="30" y="30" width="740" height="500" rx="24" fill="none" stroke="#00d9ff" stroke-opacity=".4" stroke-dasharray="10 10"/>
+    <text x="400" y="285" fill="#00d9ff" font-family="Arial" font-size="34" text-anchor="middle">${label}</text>
+    <text x="400" y="330" fill="#8ea5c9" font-family="Arial" font-size="20" text-anchor="middle">Ganti gambar di folder images/</text></svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+function avatarPlaceholder(){
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6bff"/><stop offset="1" stop-color="#02040a"/></linearGradient></defs>
+    <rect width="600" height="600" fill="url(#g)"/>
+    <text x="300" y="350" fill="#00d9ff" font-family="Orbitron,Arial" font-weight="800" font-size="190" text-anchor="middle">NS</text></svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+function setImg(img, src, label){
+  img.onerror = function(){ this.onerror = null; this.src = placeholder(label); };
+  img.src = src;
+}
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* Foto profil */
+(function(){
+  const img = document.getElementById('profilePhoto');
+  img.onerror = function(){ this.onerror = null; this.src = avatarPlaceholder(); };
+  img.src = PROFILE_PHOTO;
+})();
+
+/* Efek ketik */
+(function(){
+  const el = document.getElementById('typed');
+  let t = 0, c = 0, del = false;
+  function tick(){
+    const word = TYPED_TEXTS[t];
+    el.textContent = word.slice(0, c);
+    if(!del && c < word.length){ c++; setTimeout(tick, 80); }
+    else if(!del){ del = true; setTimeout(tick, 1400); }
+    else if(c > 0){ c--; setTimeout(tick, 40); }
+    else { del = false; t = (t + 1) % TYPED_TEXTS.length; setTimeout(tick, 300); }
+  }
+  tick();
+})();
+
+/* Skills */
+(function(){
+  const grid = document.getElementById('skillsGrid');
+  grid.innerHTML = SKILLS.map(s => `
+    <div class="card skill reveal">
+      <div class="icon">${s.icon}</div>
+      <h3>${esc(s.name)}</h3>
+      <div class="meter"><i data-level="${s.level}"></i></div>
+      <div class="pct">${s.level}%</div>
+    </div>`).join('');
+})();
+
+/* Projects */
+const modal = document.getElementById('modal');
+(function(){
+  const grid = document.getElementById('projectsGrid');
+  grid.innerHTML = PROJECTS.map((p, i) => `
+    <article class="card project reveal ${p.featured ? 'featured' : ''}">
+      <div class="thumb">
+        <img data-src="${esc(p.image)}" data-label="${esc(p.title)}" alt="Foto proyek ${esc(p.title)}" loading="lazy">
+        ${p.featured ? '<span class="ribbon">★ Proyek Utama</span>' : ''}
+      </div>
+      <div class="body">
+        <span class="cat">${esc(p.category)}</span>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.desc)}</p>
+        <div>${p.link
+          ? `<a class="btn btn-primary" href="${esc(p.link)}" target="_blank" rel="noopener">Lihat Proyek ↗</a>`
+          : `<button class="btn btn-primary" data-project="${i}">Lihat Proyek →</button>`}</div>
+      </div>
+    </article>`).join('');
+  grid.querySelectorAll('img').forEach(img => setImg(img, img.dataset.src, img.dataset.label));
+  grid.querySelectorAll('[data-project]').forEach(btn => btn.addEventListener('click', () => {
+    const p = PROJECTS[btn.dataset.project];
+    openModal(p.image, p.title, p.desc, p.link);
+  }));
+})();
+
+/* Certificates */
+(function(){
+  const grid = document.getElementById('certGrid');
+  grid.innerHTML = CERTIFICATES.map((c, i) => `
+    <figure class="card cert reveal" data-cert="${i}" tabindex="0" role="button" aria-label="Perbesar ${esc(c.title)}">
+      <div class="img"><img data-src="${esc(c.image)}" data-label="${esc(c.title)}" alt="${esc(c.title)}" loading="lazy"></div>
+      <figcaption class="info"><h4>${esc(c.title)}</h4><span>${esc(c.desc)}</span></figcaption>
+    </figure>`).join('');
+  grid.querySelectorAll('img').forEach(img => setImg(img, img.dataset.src, img.dataset.label));
+  grid.querySelectorAll('.cert').forEach(el => {
+    const open = () => { const c = CERTIFICATES[el.dataset.cert]; openModal(c.image, c.title, c.desc); };
+    el.addEventListener('click', open);
+    el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+  });
+})();
+
+/* Modal */
+function openModal(src, title, desc, link){
+  const img = document.getElementById('modalImg');
+  setImg(img, src, title);
+  img.alt = title;
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalDesc').textContent = desc || '';
+  const a = document.getElementById('modalLink');
+  if(link){ a.href = link; a.style.display = 'inline-flex'; } else { a.style.display = 'none'; }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+/* Kontak: semua tautan diisi dari PROFILE */
+(function(){
+  const mail = 'mailto:' + PROFILE.email;
+  const ig = 'https://www.instagram.com/' + PROFILE.instagram + '/';
+  const wa = 'https://wa.me/' + PROFILE.whatsapp;
+  document.getElementById('cEmail').href = mail;
+  document.getElementById('sEmail').href = mail;
+  document.getElementById('cIg').href = ig;
+  document.getElementById('sIg').href = ig;
+  document.getElementById('cWa').href = wa;
+  document.getElementById('sWa').href = wa;
+  document.getElementById('cEmailText').textContent = PROFILE.email;
+  document.getElementById('cIgText').textContent = '@' + PROFILE.instagram;
+  document.getElementById('cWaText').textContent = PROFILE.whatsappDisplay;
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('fName').value.trim();
+    const msg = document.getElementById('fMsg').value.trim();
+    const text = `Halo ${PROFILE.name}, saya ${name}.\n\n${msg}`;
+    window.open(wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    e.target.reset();
+  });
+})();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* Menu mobile */
+const navLinks = document.getElementById('navLinks');
+document.getElementById('hamburger').addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+/* Scrollspy: tandai menu aktif saat scroll */
+(function(){
+  const links = [...navLinks.querySelectorAll('a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  function spy(){
+    const y = window.scrollY + 140;
+    let current = 0;
+    sections.forEach((s, i) => { if(s.offsetTop <= y) current = i; });
+    if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = sections.length - 1;
+    links.forEach((l, i) => l.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+})();
+
+/* Tombol kembali ke atas */
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 500), { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Animasi muncul saat scroll + animasi bar skill */
+(function(){
+  const items = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(el => el.classList.add('show'));
+    document.querySelectorAll('.meter i').forEach(b => b.style.width = b.dataset.level + '%');
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.classList.add('show');
+        en.target.querySelectorAll('.meter i').forEach(b => b.style.width = b.dataset.level + '%');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: .12 });
+  items.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
